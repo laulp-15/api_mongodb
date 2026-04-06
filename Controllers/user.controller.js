@@ -10,6 +10,21 @@ const getUsers = async (req, res) => {
     }
 };
 
+// Obtener usuario por id
+const getUserById = async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+
+        if (!user) {
+            return res.status(404).json({ message: "Usuario no encontrado" });
+        }
+
+        res.json(user);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
 // Crear un nuevo usuario 
 const createUser = async (req, res) => {
     const { name, email, phone} = req.body;
@@ -63,6 +78,7 @@ const deleteUser = async (req, res) => {
 
 module.exports = {
     getUsers,
+    getUserById,
     createUser,
     updateUser,
     deleteUser

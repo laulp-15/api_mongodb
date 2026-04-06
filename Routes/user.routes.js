@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {
     getUsers,
+    getUserById,
     createUser,
     updateUser,
     deleteUser
@@ -9,6 +10,9 @@ const {
 
 // Obtener todos los usuarios
 router.get('/', getUsers);
+
+// Obtener usuario por id
+router.get('/:id', getUserById);
 
 // Crear un nuevo usuario
 router.post('/', createUser);
